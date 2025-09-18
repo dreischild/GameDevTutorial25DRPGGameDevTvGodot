@@ -89,9 +89,9 @@ _data = {
 }
 
 [node name="Player" type="Node3D"]
-script = ExtResource("1_eiaiy")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("1_eiaiy")
 
 [node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D"]
 texture = ExtResource("1_7x37g")
