@@ -8,7 +8,7 @@ public partial class Player : CharacterBody3D
 {
     [ExportGroup("Required Nodes")]
     [Export] private Sprite3D sprite3dNode;
-    [Export] private AnimationPlayer animationPlayer;
+    [Export] public AnimationPlayer animationPlayer;
 
     private Vector2 direction = Vector2.Zero;
     private StringName currentAnimation = GameConstants.ANIM_IDLE;
@@ -16,7 +16,7 @@ public partial class Player : CharacterBody3D
     public override void _Ready()
     {
         // Initialisierung der Animation.
-        animationPlayer.Play(currentAnimation);
+        //animationPlayer.Play(currentAnimation);
     }   
 
     public override void _PhysicsProcess(double delta)
@@ -57,6 +57,7 @@ public partial class Player : CharacterBody3D
         }
 
         // Animation wechseln
+        /*
         if (direction == Vector2.Zero)
         {
             animationPlayer.Play(GameConstants.ANIM_IDLE);
@@ -65,5 +66,6 @@ public partial class Player : CharacterBody3D
         {
             animationPlayer.Play(GameConstants.ANIM_MOVE);
         }
+        */
     }
 }
