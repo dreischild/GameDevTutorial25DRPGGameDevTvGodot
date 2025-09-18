@@ -11,9 +11,18 @@ config_version=5
 [application]
 
 config/name="GameDevTutorial25DRPGGameDevTvGodot"
-config/features=PackedStringArray("4.5", "Forward Plus")
+run/main_scene="uid://cwbmyqf6dhl2m"
+config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="uid://dgwq48yvfycgt"
 
 [dotnet]
 
 project/assembly_name="GameDevTutorial25DRPGGameDevTvGodot"
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "green",
+"res://Scenes/": "red",
+"res://Scripts/": "blue"
+}
