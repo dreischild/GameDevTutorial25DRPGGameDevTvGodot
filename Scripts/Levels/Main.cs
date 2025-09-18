@@ -1,3 +1,5 @@
+namespace GameDevTutorial25DRPGGameDevTvGodot.Scripts.Levels;
+
 using Godot;
 using System;
 
