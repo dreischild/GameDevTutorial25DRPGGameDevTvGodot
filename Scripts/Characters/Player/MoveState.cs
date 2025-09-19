@@ -6,6 +6,7 @@ using Godot;
 public partial class MoveState : Node
 {
     private Player player;
+    private bool isDashingKeyJustPressed = false;
     
     public override void _Ready()
     {
@@ -24,13 +25,18 @@ public partial class MoveState : Node
             // Wechselt in den IdleState
             player.stateMachine.SwitchCurrentState<IdleState>();
         }
-        else if (Input.IsActionJustPressed(GameConstants.ACTION_DASH))
+        else if (isDashingKeyJustPressed)
         {
             // Wechselt in den DashState
             player.stateMachine.SwitchCurrentState<DashState>();
         }
     }
-    
+
+    public override void _Input(InputEvent @event)
+    {
+        isDashingKeyJustPressed = Input.IsActionJustPressed(GameConstants.ACTION_DASH);
+    }
+
     // Die Notification-Methode wird aufgerufen, wenn eine Notification an diesen Node geschickt wird.
     public override void _Notification(int what)
     {
