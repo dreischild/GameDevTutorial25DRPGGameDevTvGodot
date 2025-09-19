@@ -10,4 +10,5 @@ public class GameConstants
     public const string ACTION_MOVE_RIGHT = "MoveRight";
     public const string ACTION_MOVE_FORWARD = "MoveForward";
     public const string ACTION_MOVE_BACKWARD = "MoveBackward";
+    public const string ACTION_DASH = "Dash";
 }

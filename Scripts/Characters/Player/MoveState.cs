@@ -24,6 +24,11 @@ public partial class MoveState : Node
             // Wechselt in den IdleState
             player.stateMachine.SwitchCurrentState<IdleState>();
         }
+        else if (Input.IsActionJustPressed(GameConstants.ACTION_DASH))
+        {
+            // Wechselt in den DashState
+            player.stateMachine.SwitchCurrentState<DashState>();
+        }
     }
     
     // Die Notification-Methode wird aufgerufen, wenn eine Notification an diesen Node geschickt wird.

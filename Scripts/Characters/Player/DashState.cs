@@ -19,7 +19,11 @@ public partial class DashState : Node
 
     public override void _PhysicsProcess(double delta)
     {
-        
+        if (player.direction == Vector2.Zero)
+        {
+            // Wechselt in den IdleState
+            player.stateMachine.SwitchCurrentState<IdleState>();
+        }
     }
     
     // Die Notification-Methode wird aufgerufen, wenn eine Notification an diesen Node geschickt wird.
