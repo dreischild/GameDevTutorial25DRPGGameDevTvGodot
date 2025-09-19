@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bw2ucp7cuc17b"]
+[gd_scene load_steps=45 format=3 uid="uid://bw2ucp7cuc17b"]
 
 [ext_resource type="Texture2D" uid="uid://cl2n6vuie3h33" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_000.png" id="1_7x37g"]
 [ext_resource type="Script" uid="uid://bbegmrg6slvhj" path="res://Scripts/Characters/Player/Player.cs" id="1_eiaiy"]
@@ -31,8 +31,14 @@
 [ext_resource type="Texture2D" uid="uid://c0idyyqmd2kwp" path="res://Assets/Sprites/Characters/Player/Running/Running_009.png" id="28_ywskp"]
 [ext_resource type="Texture2D" uid="uid://bp4ibqhkamatd" path="res://Assets/Sprites/Characters/Player/Running/Running_010.png" id="29_gelu2"]
 [ext_resource type="Texture2D" uid="uid://dxywrncs8sv20" path="res://Assets/Sprites/Characters/Player/Running/Running_011.png" id="30_uvgfe"]
+[ext_resource type="Texture2D" uid="uid://otrq5mlh5e3s" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_000.png" id="31_ywskp"]
 [ext_resource type="Script" uid="uid://dwn7bgq7sulhw" path="res://Scripts/Characters/Player/IdleState.cs" id="32_4yec0"]
+[ext_resource type="Texture2D" uid="uid://cs827ityuk41x" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_001.png" id="32_gelu2"]
 [ext_resource type="Script" uid="uid://db5rure6y7b5n" path="res://Scripts/Characters/Player/MoveState.cs" id="33_me3gr"]
+[ext_resource type="Texture2D" uid="uid://dakp6w6jnlyob" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_002.png" id="33_uvgfe"]
+[ext_resource type="Texture2D" uid="uid://mbou3mbcsgis" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_003.png" id="34_e5xbx"]
+[ext_resource type="Texture2D" uid="uid://gjayekdxt7b8" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_004.png" id="35_8uivy"]
+[ext_resource type="Texture2D" uid="uid://cft78h0wd3n8l" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_005.png" id="36_yfcdn"]
 
 [sub_resource type="Animation" id="Animation_gii1i"]
 resource_name = "Idle"
@@ -45,10 +51,10 @@ tracks/0/path = NodePath("Sprite3D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05778722, 0.11419856, 0.1673995, 0.2233522, 0.27884626, 0.33388174, 0.3875413, 0.44441125, 0.49990532, 0.5599857, 0.61181074, 0.66822207, 0.72371614, 0.7773757, 0.83516294, 0.890657, 0.9456925),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0045679696, 0.05778722, 0.11419856, 0.1673995, 0.2233522, 0.27884626, 0.33388174, 0.3875413, 0.44441125, 0.49990532, 0.5599857, 0.61181074, 0.66822207, 0.72371614, 0.7773757, 0.83516294, 0.890657, 0.9456925),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("1_7x37g"), ExtResource("2_pr2lv"), ExtResource("3_cvakg"), ExtResource("4_othne"), ExtResource("5_a7o8c"), ExtResource("6_23420"), ExtResource("7_p6wb4"), ExtResource("8_y3fvr"), ExtResource("9_roksr"), ExtResource("10_qn1vu"), ExtResource("11_61squ"), ExtResource("12_nafmd"), ExtResource("13_46w32"), ExtResource("14_eiaiy"), ExtResource("15_cflke"), ExtResource("16_4yec0"), ExtResource("17_me3gr"), ExtResource("18_2iqoh")]
+"values": [ExtResource("1_7x37g"), ExtResource("1_7x37g"), ExtResource("2_pr2lv"), ExtResource("3_cvakg"), ExtResource("4_othne"), ExtResource("5_a7o8c"), ExtResource("6_23420"), ExtResource("7_p6wb4"), ExtResource("8_y3fvr"), ExtResource("9_roksr"), ExtResource("10_qn1vu"), ExtResource("11_61squ"), ExtResource("12_nafmd"), ExtResource("13_46w32"), ExtResource("14_eiaiy"), ExtResource("15_cflke"), ExtResource("16_4yec0"), ExtResource("17_me3gr"), ExtResource("18_2iqoh")]
 }
 
 [sub_resource type="Animation" id="Animation_1ujki"]
@@ -83,8 +89,25 @@ tracks/0/keys = {
 "values": [ExtResource("1_7x37g"), ExtResource("20_eiaiy"), ExtResource("21_cflke"), ExtResource("22_4yec0"), ExtResource("23_me3gr"), ExtResource("24_2iqoh"), ExtResource("25_gii1i"), ExtResource("26_1ujki"), ExtResource("27_gs6v2"), ExtResource("28_ywskp"), ExtResource("29_gelu2"), ExtResource("30_uvgfe")]
 }
 
+[sub_resource type="Animation" id="Animation_4yec0"]
+resource_name = "Dash"
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.0002, 0.00029999999, 0.0004, 0.0036507116, 0.16666667, 0.33432204, 0.50263876, 0.6672865, 0.83514464),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_7x37g"), ExtResource("1_7x37g"), ExtResource("1_7x37g"), ExtResource("1_7x37g"), ExtResource("1_7x37g"), ExtResource("31_ywskp"), ExtResource("32_gelu2"), ExtResource("33_uvgfe"), ExtResource("34_e5xbx"), ExtResource("35_8uivy"), ExtResource("36_yfcdn")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gs6v2"]
 _data = {
+&"Dash": SubResource("Animation_4yec0"),
 &"Idle": SubResource("Animation_gii1i"),
 &"Move": SubResource("Animation_e5xbx"),
 &"RESET": SubResource("Animation_1ujki")
