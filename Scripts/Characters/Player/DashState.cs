@@ -13,8 +13,8 @@ public partial class DashState : Node
         // da dieser das Eltern-Node ist. Über <Player> wird der Typ gecastet.
         player = GetOwner<Player>();
 
-        // Sicherstellen, dass die PhysicsProcess-Methode standardmäßig nicht aufgerufen wird.
-        Notification(StateMachine.STOP_PHYSICS_PROCESS_NOTIFICATION);
+        // State standardmäßig deaktivieren.
+        Notification(StateMachine.DEACTIVATE_STATE_NOTIFICATION);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -36,13 +36,15 @@ public partial class DashState : Node
         {
             player.animationPlayer.Play(GameConstants.ANIM_DASH);
         }
-        else if (what == StateMachine.START_PHYSICS_PROCESS_NOTIFICATION)
+        else if (what == StateMachine.ACTIVATE_STATE_NOTIFICATION)
         {
             SetPhysicsProcess(true);
+            SetProcessInput(true);
         }
-        else if (what == StateMachine.STOP_PHYSICS_PROCESS_NOTIFICATION)
+        else if (what == StateMachine.DEACTIVATE_STATE_NOTIFICATION)
         {
             SetPhysicsProcess(false);
+            SetProcessInput(false);
         }
     }
 }
