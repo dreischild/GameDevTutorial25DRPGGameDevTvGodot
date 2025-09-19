@@ -14,6 +14,9 @@ public partial class IdleState : Node
         // Über die GetOwner-Methode wird der Player-Node (Root-Node) abgerufen,
         // da dieser das Eltern-Node ist. Über <Player> wird der Typ gecastet.
         player = GetOwner<Player>();
+
+        // Sicherstellen, dass die PhysicsProcess-Methode standardmäßig nicht aufgerufen wird.
+        Notification(StateMachine.STOP_PHYSICS_PROCESS_NOTIFICATION);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -34,6 +37,14 @@ public partial class IdleState : Node
         if (what == StateMachine.START_ANIMATION_NOTIFICATION)
         {
             player.animationPlayer.Play(GameConstants.ANIM_IDLE);
+        }
+        else if (what == StateMachine.START_PHYSICS_PROCESS_NOTIFICATION)
+        {
+            SetPhysicsProcess(true);
+        }
+        else if (what == StateMachine.STOP_PHYSICS_PROCESS_NOTIFICATION)
+        {
+            SetPhysicsProcess(false);
         }
     }
 }
