@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bw2ucp7cuc17b"]
+[gd_scene load_steps=46 format=3 uid="uid://bw2ucp7cuc17b"]
 
 [ext_resource type="Texture2D" uid="uid://cl2n6vuie3h33" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_000.png" id="1_7x37g"]
 [ext_resource type="Script" uid="uid://bbegmrg6slvhj" path="res://Scripts/Characters/Player/Player.cs" id="1_eiaiy"]
@@ -39,6 +39,7 @@
 [ext_resource type="Texture2D" uid="uid://mbou3mbcsgis" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_003.png" id="34_e5xbx"]
 [ext_resource type="Texture2D" uid="uid://gjayekdxt7b8" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_004.png" id="35_8uivy"]
 [ext_resource type="Texture2D" uid="uid://cft78h0wd3n8l" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_005.png" id="36_yfcdn"]
+[ext_resource type="Script" uid="uid://dtpctli767cay" path="res://Scripts/Characters/Player/DashState.cs" id="39_gelu2"]
 
 [sub_resource type="Animation" id="Animation_gii1i"]
 resource_name = "Idle"
@@ -134,7 +135,10 @@ script = ExtResource("32_4yec0")
 [node name="MoveState" type="Node" parent="."]
 script = ExtResource("33_me3gr")
 
+[node name="DashState" type="Node" parent="."]
+script = ExtResource("39_gelu2")
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("currentState", "states")]
 script = ExtResource("16_c5nky")
 currentState = NodePath("../IdleState")
-states = [NodePath("../IdleState"), NodePath("../MoveState")]
+states = [NodePath("../IdleState"), NodePath("../MoveState"), NodePath("../DashState")]
