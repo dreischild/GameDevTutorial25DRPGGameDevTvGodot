@@ -16,8 +16,7 @@ public partial class MoveState : Node
         // Es muss sichergestellt werden, dass die base Notification-Methode aufgerufen wird.
         base._Notification(what);
         
-        // 50001 = Animation starten
-        if (what == 50001)
+        if (what == StateMachine.START_ANIMATION_NOTIFICATION)
         {
             // Über die GetOwner-Methode wird der Player-Node (Root-Node) abgerufen,
             // da dieser das Eltern-Node ist. Über <Player> wird der Typ gecastet.
