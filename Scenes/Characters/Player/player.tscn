@@ -90,10 +90,11 @@ _data = {
 &"RESET": SubResource("Animation_1ujki")
 }
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("sprite3dNode", "animationPlayer")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("sprite3dNode", "animationPlayer", "stateMachine")]
 script = ExtResource("1_eiaiy")
 sprite3dNode = NodePath("Sprite3D")
 animationPlayer = NodePath("AnimationPlayer")
+stateMachine = NodePath("StateMachine")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 texture_filter = 0

@@ -9,14 +9,13 @@ public partial class Player : CharacterBody3D
     [ExportGroup("Required Nodes")]
     [Export] private Sprite3D sprite3dNode;
     [Export] public AnimationPlayer animationPlayer;
+    [Export] public StateMachine stateMachine;
 
-    private Vector2 direction = Vector2.Zero;
+    public Vector2 direction = Vector2.Zero;
     private StringName currentAnimation = GameConstants.ANIM_IDLE;
 
     public override void _Ready()
     {
-        // Initialisierung der Animation.
-        //animationPlayer.Play(currentAnimation);
     }   
 
     public override void _PhysicsProcess(double delta)
@@ -55,17 +54,5 @@ public partial class Player : CharacterBody3D
             // True, wenn sich der Spieler nach links bewegt.
             sprite3dNode.FlipH = Input.IsActionPressed(GameConstants.ACTION_MOVE_LEFT);
         }
-
-        // Animation wechseln
-        /*
-        if (direction == Vector2.Zero)
-        {
-            animationPlayer.Play(GameConstants.ANIM_IDLE);
-        }
-        else
-        {
-            animationPlayer.Play(GameConstants.ANIM_MOVE);
-        }
-        */
     }
 }
