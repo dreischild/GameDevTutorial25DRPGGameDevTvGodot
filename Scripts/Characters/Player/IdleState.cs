@@ -7,9 +7,22 @@ using System;
 
 public partial class IdleState : Node
 {
+    private Player player;
+
     public override void _Ready()
     {
-                
+        // Über die GetOwner-Methode wird der Player-Node (Root-Node) abgerufen,
+        // da dieser das Eltern-Node ist. Über <Player> wird der Typ gecastet.
+        player = GetOwner<Player>();
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        if (player.direction != Vector2.Zero)
+        {
+            // Wechselt in den MoveState
+            player.stateMachine.SwitchCurrentState<MoveState>();
+        }
     }
     
     // Die Notification-Methode wird aufgerufen, wenn eine Notification an diesen Node geschickt wird.
@@ -20,9 +33,6 @@ public partial class IdleState : Node
 
         if (what == StateMachine.START_ANIMATION_NOTIFICATION)
         {
-            // Über die GetOwner-Methode wird der Player-Node (Root-Node) abgerufen,
-            // da dieser das Eltern-Node ist. Über <Player> wird der Typ gecastet.
-            Player player = GetOwner<Player>();
             player.animationPlayer.Play(GameConstants.ANIM_IDLE);
         }
     }
