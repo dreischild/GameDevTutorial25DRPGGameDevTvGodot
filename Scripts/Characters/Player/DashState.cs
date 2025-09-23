@@ -6,7 +6,8 @@ using Godot;
 public partial class DashState : Node
 {
     private Player player;
-    [Export] Timer dashTimerNode;
+    [Export] private Timer dashTimerNode;
+    [Export] private float speed = 10f;
 
     public override void _Ready()
     {
@@ -31,7 +32,7 @@ public partial class DashState : Node
         player.Velocity = new(player.direction.X, 0, player.direction.Y);
 
         // Die Geschwindigkeit wird skaliert auf Factor 5.
-        player.Velocity *= 20;
+        player.Velocity *= speed;
 
         // Die Bewegung wird angewendet.
         player.MoveAndSlide();

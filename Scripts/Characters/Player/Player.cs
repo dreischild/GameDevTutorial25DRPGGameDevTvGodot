@@ -20,14 +20,7 @@ public partial class Player : CharacterBody3D
 
     public override void _PhysicsProcess(double delta)
     {
-        // Der Vector2 wird in einen Vector3 umgewandelt und der Velocity zugewiesen.
-        Velocity = new(direction.X, 0, direction.Y);
-
-        // Die Geschwindigkeit wird skaliert auf Factor 5.
-        Velocity *= 5;
-
-        // Die Bewegung wird angewendet.
-        MoveAndSlide();
+        
     }
 
     public override void _Input(InputEvent @event)
