@@ -6,14 +6,13 @@ using Godot;
 public partial class DashState : AbstractState
 {
     [Export] private Timer dashTimerNode;
-    [Export] private float speed = 10f;
+    // https://docs.godotengine.org/en/stable/tutorials/scripting/c_sharp/c_sharp_exports.html
+    [Export(PropertyHint.Range, "1, 20, 0.1")] private float speed = 10f;
 
     protected override string animationName => GameConstants.ANIM_DASH;
 
-    protected override void ActivateState()
+    protected override void EnterState()
     {
-        base.ActivateState();
-
         dashTimerNode.Start();
     }
 

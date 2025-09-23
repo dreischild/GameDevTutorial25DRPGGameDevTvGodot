@@ -32,6 +32,7 @@ abstract public partial class AbstractState : Node
         if (what == ACTIVATE_STATE__NOTIFICATION)
         {
             ActivateState();
+            EnterState();
         }
         else if (what == DEACTIVATE_STATE__NOTIFICATION)
         {
@@ -45,11 +46,13 @@ abstract public partial class AbstractState : Node
         SetProcessInput(true);
 
         player.animationPlayer.Play(animationName);
-    }       
-    
+    }
+
     protected virtual void DeactivateState()
     {
         SetPhysicsProcess(false);
         SetProcessInput(false);
     }
+    
+    protected virtual void EnterState() { }
 }
