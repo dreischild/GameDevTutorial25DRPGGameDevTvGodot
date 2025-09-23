@@ -24,6 +24,8 @@ public partial class MoveState : Node
         {
             // Wechselt in den IdleState
             player.stateMachine.SwitchCurrentState<IdleState>();
+
+            return;
         }
         else if (isDashingKeyJustPressed)
         {
@@ -33,7 +35,18 @@ public partial class MoveState : Node
 
             // Wechselt in den DashState
             player.stateMachine.SwitchCurrentState<DashState>();
+
+            return;
         }
+
+        // Der Vector2 wird in einen Vector3 umgewandelt und der Velocity zugewiesen.
+        player.Velocity = new(player.direction.X, 0, player.direction.Y);
+
+        // Die Geschwindigkeit wird skaliert auf Factor 5.
+        player.Velocity *= 5;
+
+        // Die Bewegung wird angewendet.
+        player.MoveAndSlide();
     }
 
     public override void _Input(InputEvent @event)
