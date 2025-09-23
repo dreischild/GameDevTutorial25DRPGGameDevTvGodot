@@ -27,6 +27,10 @@ public partial class MoveState : Node
         }
         else if (isDashingKeyJustPressed)
         {
+            // Sicherstellen, dass die isDashingKeyJustPressed Variable zurückgesetzt wird.
+            // Dies ist erforderlich, da die _Input Methode bei inaktiver State nicht aufgerufen wird.
+            isDashingKeyJustPressed = false;
+
             // Wechselt in den DashState
             player.stateMachine.SwitchCurrentState<DashState>();
         }
@@ -34,7 +38,6 @@ public partial class MoveState : Node
 
     public override void _Input(InputEvent @event)
     {
-        GD.Print("MoveState: _Input");
         isDashingKeyJustPressed = Input.IsActionJustPressed(GameConstants.ACTION_DASH);
     }
 

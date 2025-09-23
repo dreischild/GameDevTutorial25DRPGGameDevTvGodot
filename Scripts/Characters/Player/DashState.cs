@@ -6,6 +6,7 @@ using Godot;
 public partial class DashState : Node
 {
     private Player player;
+    [Export] Timer dashTimerNode;
 
     public override void _Ready()
     {
@@ -19,7 +20,7 @@ public partial class DashState : Node
 
     public override void _PhysicsProcess(double delta)
     {
-        if (player.direction == Vector2.Zero)
+        if (dashTimerNode.IsStopped() || player.direction == Vector2.Zero)
         {
             // Wechselt in den IdleState
             player.stateMachine.SwitchCurrentState<IdleState>();
@@ -34,6 +35,7 @@ public partial class DashState : Node
 
         if (what == StateMachine.START_ANIMATION_NOTIFICATION)
         {
+            dashTimerNode.Start();
             player.animationPlayer.Play(GameConstants.ANIM_DASH);
         }
         else if (what == StateMachine.ACTIVATE_STATE_NOTIFICATION)
