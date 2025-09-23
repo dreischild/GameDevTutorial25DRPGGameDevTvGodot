@@ -1,16 +1,10 @@
 namespace GameDevTutorial25DRPGGameDevTvGodot.Scripts.Characters;
 
+using GameDevTutorial25DRPGGameDevTvGodot.Scripts.Characters.Player;
 using Godot;
 
 public partial class StateMachine : Node
 {
-    // Notification zum Start der Animation
-    public const int START_ANIMATION_NOTIFICATION = 50001;
-    // Notification aktivieren des States (z.B. Start der PhysicsProcess Methode)
-    public const int ACTIVATE_STATE_NOTIFICATION = 50002;
-    // Notification deaktivieren des States (z.B. Stop der PhysicsProcess Methode)
-    public const int DEACTIVATE_STATE_NOTIFICATION = 50003;
-
     [Export] private Node currentState;
     [Export] private Node[] states;
 
@@ -46,16 +40,13 @@ public partial class StateMachine : Node
 
     private void StartCurrentState()
     {
-        // State aktivieren
-        currentState.Notification(ACTIVATE_STATE_NOTIFICATION);
-
-        // Animation des States starten
-        currentState.Notification(START_ANIMATION_NOTIFICATION);
+        // State aktivieren und Animation des States starten
+        currentState.Notification(AbstractState.ACTIVATE_STATE__NOTIFICATION);
     }
 
     private void StopCurrentState()
     {
         // State deaktivieren
-        currentState.Notification(DEACTIVATE_STATE_NOTIFICATION);
+        currentState.Notification(AbstractState.DEACTIVATE_STATE__NOTIFICATION);
     }
 }
