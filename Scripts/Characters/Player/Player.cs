@@ -1,5 +1,6 @@
 namespace GameDevTutorial25DRPGGameDevTvGodot.Scripts.Characters.Player;
 
+using GameDevTutorial25DRPGGameDevTvGodot.Scripts.Characters;
 using GameDevTutorial25DRPGGameDevTvGodot.Scripts.General;
 using Godot;
 using System;

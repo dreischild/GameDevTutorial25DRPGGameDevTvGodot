@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://ba6bmwtny0xmx" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_013.png" id="14_eiaiy"]
 [ext_resource type="Texture2D" uid="uid://d0vbm7qwmbajg" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_014.png" id="15_cflke"]
 [ext_resource type="Texture2D" uid="uid://dud3gvcfnprs7" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_015.png" id="16_4yec0"]
-[ext_resource type="Script" uid="uid://bamocbfrofg8t" path="res://Scripts/Characters/StateMachine.cs" id="16_c5nky"]
 [ext_resource type="Texture2D" uid="uid://dap5qsxxsj642" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_016.png" id="17_me3gr"]
 [ext_resource type="Texture2D" uid="uid://v5af8xo8vf3x" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_017.png" id="18_2iqoh"]
 [ext_resource type="Texture2D" uid="uid://cy8k2ykaf8012" path="res://Assets/Sprites/Characters/Player/Running/Running_001.png" id="20_eiaiy"]
@@ -39,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://mbou3mbcsgis" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_003.png" id="34_e5xbx"]
 [ext_resource type="Texture2D" uid="uid://gjayekdxt7b8" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_004.png" id="35_8uivy"]
 [ext_resource type="Texture2D" uid="uid://cft78h0wd3n8l" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_005.png" id="36_yfcdn"]
+[ext_resource type="PackedScene" uid="uid://dyhx0550galw3" path="res://Scenes/Characters/state_machine.tscn" id="37_1ujki"]
 [ext_resource type="Script" uid="uid://dtpctli767cay" path="res://Scripts/Characters/Player/DashState.cs" id="39_gelu2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gelu2"]
@@ -143,8 +143,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_gs6v2")
 }
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("currentState", "states")]
-script = ExtResource("16_c5nky")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("currentState", "states") instance=ExtResource("37_1ujki")]
 currentState = NodePath("IdleState")
 states = [NodePath("IdleState"), NodePath("MoveState"), NodePath("DashState")]
 
