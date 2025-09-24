@@ -5,25 +5,8 @@ using GameDevTutorial25DRPGGameDevTvGodot.Scripts.General;
 using Godot;
 using System;
 
-public partial class Player : CharacterBody3D
+public partial class Player : Character
 {
-    [ExportGroup("Required Nodes")]
-    [Export] private Sprite3D sprite3dNode;
-    [Export] public AnimationPlayer animationPlayer { get; private set; }
-    [Export] public StateMachine stateMachine { get; private set; }
-
-    public Vector2 direction = Vector2.Zero;
-    private StringName currentAnimation = GameConstants.ANIM_IDLE;
-
-    public override void _Ready()
-    {
-    }   
-
-    public override void _PhysicsProcess(double delta)
-    {
-        
-    }
-
     public override void _Input(InputEvent @event)
     {
         /**

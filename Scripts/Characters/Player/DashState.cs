@@ -3,7 +3,7 @@ namespace GameDevTutorial25DRPGGameDevTvGodot.Scripts.Characters.Player;
 using GameDevTutorial25DRPGGameDevTvGodot.Scripts.General;
 using Godot;
 
-public partial class DashState : AbstractState
+public partial class DashState : PlayerState
 {
     [Export] private Timer dashTimerNode;
     // https://docs.godotengine.org/en/stable/tutorials/scripting/c_sharp/c_sharp_exports.html
@@ -18,10 +18,10 @@ public partial class DashState : AbstractState
 
     public override void _PhysicsProcess(double delta)
     {
-        if (dashTimerNode.IsStopped() || player.direction == Vector2.Zero)
+        if (dashTimerNode.IsStopped() || character.direction == Vector2.Zero)
         {
             // Wechselt in den IdleState
-            player.stateMachine.SwitchCurrentState<IdleState>();
+            character.stateMachine.SwitchCurrentState<IdleState>();
             return;
         }
 

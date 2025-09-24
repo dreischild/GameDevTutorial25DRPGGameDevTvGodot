@@ -3,17 +3,17 @@ namespace GameDevTutorial25DRPGGameDevTvGodot.Scripts.Characters.Player;
 using GameDevTutorial25DRPGGameDevTvGodot.Scripts.General;
 using Godot;
 
-public partial class MoveState : AbstractState
+public partial class MoveState : PlayerState
 {
     protected override string animationName => GameConstants.ANIM_MOVE;
     private bool isDashingKeyJustPressed = false;
 
     public override void _PhysicsProcess(double delta)
     {
-        if (player.direction == Vector2.Zero)
+        if (character.direction == Vector2.Zero)
         {
             // Wechselt in den IdleState
-            player.stateMachine.SwitchCurrentState<IdleState>();
+            character.stateMachine.SwitchCurrentState<IdleState>();
 
             return;
         }
@@ -24,7 +24,7 @@ public partial class MoveState : AbstractState
             isDashingKeyJustPressed = false;
 
             // Wechselt in den DashState
-            player.stateMachine.SwitchCurrentState<DashState>();
+            character.stateMachine.SwitchCurrentState<DashState>();
 
             return;
         }

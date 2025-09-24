@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwbmyqf6dhl2m"]
+[gd_scene load_steps=6 format=3 uid="uid://cwbmyqf6dhl2m"]
 
 [ext_resource type="Script" uid="uid://d3sjhur7r0r03" path="res://Scripts/Levels/Main.cs" id="1_yjsus"]
 [ext_resource type="PackedScene" uid="uid://bw2ucp7cuc17b" path="res://Scenes/Characters/Player/player.tscn" id="2_u872a"]
+[ext_resource type="PackedScene" uid="uid://cl856o5ryb335" path="res://Scenes/Characters/EnemyKnight/enemy_knight.tscn" id="3_nk5xi"]
 [ext_resource type="MeshLibrary" uid="uid://xijmq5iiko46" path="res://Resources/tiles.tres" id="3_u872a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nk5xi"]
@@ -15,6 +16,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6901, 1.7487671, -0.215335
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 2, 8)
+
+[node name="EnemyKnight" parent="." instance=ExtResource("3_nk5xi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.833534, 1.7487671, -0.21533537)
 
 [node name="Environment" type="Node3D" parent="."]
 

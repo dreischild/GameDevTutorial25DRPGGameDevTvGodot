@@ -1,6 +1,4 @@
 namespace GameDevTutorial25DRPGGameDevTvGodot.Scripts.Characters;
-
-using GameDevTutorial25DRPGGameDevTvGodot.Scripts.Characters.Player;
 using Godot;
 
 public partial class StateMachine : Node
@@ -41,12 +39,12 @@ public partial class StateMachine : Node
     private void StartCurrentState()
     {
         // State aktivieren und Animation des States starten
-        currentState.Notification(AbstractState.ACTIVATE_STATE__NOTIFICATION);
+        currentState.Notification(CharacterState.ACTIVATE_STATE__NOTIFICATION);
     }
 
     private void StopCurrentState()
     {
         // State deaktivieren
-        currentState.Notification(AbstractState.DEACTIVATE_STATE__NOTIFICATION);
+        currentState.Notification(CharacterState.DEACTIVATE_STATE__NOTIFICATION);
     }
 }
