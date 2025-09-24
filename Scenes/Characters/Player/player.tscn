@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bw2ucp7cuc17b"]
+[gd_scene load_steps=47 format=3 uid="uid://bw2ucp7cuc17b"]
 
 [ext_resource type="Texture2D" uid="uid://cl2n6vuie3h33" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_000.png" id="1_7x37g"]
 [ext_resource type="Script" uid="uid://bbegmrg6slvhj" path="res://Scripts/Characters/Player/Player.cs" id="1_eiaiy"]
@@ -40,6 +40,10 @@
 [ext_resource type="Texture2D" uid="uid://gjayekdxt7b8" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_004.png" id="35_8uivy"]
 [ext_resource type="Texture2D" uid="uid://cft78h0wd3n8l" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_005.png" id="36_yfcdn"]
 [ext_resource type="Script" uid="uid://dtpctli767cay" path="res://Scripts/Characters/Player/DashState.cs" id="39_gelu2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gelu2"]
+radius = 0.5463867
+height = 1.4746094
 
 [sub_resource type="Animation" id="Animation_4yec0"]
 resource_name = "Dash"
@@ -120,7 +124,12 @@ sprite3dNode = NodePath("Sprite3D")
 animationPlayer = NodePath("AnimationPlayer")
 stateMachine = NodePath("StateMachine")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04331833, 0)
+shape = SubResource("CapsuleShape3D_gelu2")
+
 [node name="Sprite3D" type="Sprite3D" parent="."]
+pixel_size = 0.0025
 texture_filter = 0
 texture = ExtResource("1_7x37g")
 
