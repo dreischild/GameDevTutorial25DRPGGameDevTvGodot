@@ -1,5 +1,6 @@
 namespace GameDevTutorial25DRPGGameDevTvGodot.Scripts.Characters.Player;
 
+using GameDevTutorial25DRPGGameDevTvGodot.Scripts.General;
 using Godot;
 
 abstract public partial class AbstractState : Node
@@ -52,6 +53,24 @@ abstract public partial class AbstractState : Node
     {
         SetPhysicsProcess(false);
         SetProcessInput(false);
+    }
+
+    protected void StartMoveAndSlide(float speed = 5f, bool applyGravity = true)
+    {
+        // Der Vector2 wird in einen Vector3 umgewandelt und der Velocity zugewiesen.
+        player.Velocity = new(player.direction.X, 0, player.direction.Y);
+
+        // Die Geschwindigkeit wird skaliert auf Factor 5.
+        player.Velocity *= speed;
+
+        // Adding gravity
+        if (applyGravity && !player.IsOnFloor())
+        {
+            player.Velocity += GameConstants.GRAVITY;
+        }
+
+        // Die Bewegung wird angewendet.
+        player.MoveAndSlide();
     }
     
     protected virtual void EnterState() { }

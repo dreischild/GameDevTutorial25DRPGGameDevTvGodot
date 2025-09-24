@@ -25,13 +25,6 @@ public partial class DashState : AbstractState
             return;
         }
 
-        // Der Vector2 wird in einen Vector3 umgewandelt und der Velocity zugewiesen.
-        player.Velocity = new(player.direction.X, 0, player.direction.Y);
-
-        // Die Geschwindigkeit wird skaliert auf Factor 5.
-        player.Velocity *= speed;
-
-        // Die Bewegung wird angewendet.
-        player.MoveAndSlide();
+        StartMoveAndSlide(speed);
     }
 }

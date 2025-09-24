@@ -29,14 +29,7 @@ public partial class MoveState : AbstractState
             return;
         }
 
-        // Der Vector2 wird in einen Vector3 umgewandelt und der Velocity zugewiesen.
-        player.Velocity = new(player.direction.X, 0, player.direction.Y);
-
-        // Die Geschwindigkeit wird skaliert auf Factor 5.
-        player.Velocity *= 5;
-
-        // Die Bewegung wird angewendet.
-        player.MoveAndSlide();
+        StartMoveAndSlide(7f);
     }
 
     public override void _Input(InputEvent @event)

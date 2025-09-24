@@ -1,3 +1,5 @@
+using Godot;
+
 namespace GameDevTutorial25DRPGGameDevTvGodot.Scripts.General;
 
 public class GameConstants
@@ -11,4 +13,6 @@ public class GameConstants
     public const string ACTION_MOVE_FORWARD = "MoveForward";
     public const string ACTION_MOVE_BACKWARD = "MoveBackward";
     public const string ACTION_DASH = "Dash";
+
+    public static readonly Vector3 GRAVITY = new(0, -24.0f, 0);
 }

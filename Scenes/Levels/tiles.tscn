@@ -27,4 +27,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.783253, 0.0197196, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.824601, 0, 0)
 
 [node name="wall_doorway_scaffold2" parent="." instance=ExtResource("7_11snh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.786276, 0, 3.8503551)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.593426, 0.011585236, 3.841096)

@@ -43,7 +43,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gelu2"]
 radius = 0.5463867
-height = 1.4746094
+height = 1.7012634
 
 [sub_resource type="Animation" id="Animation_4yec0"]
 resource_name = "Dash"
@@ -119,13 +119,18 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("sprite3dNode", "animationPlayer", "stateMachine")]
+collision_layer = 2
+wall_min_slide_angle = 2.0751965
+floor_constant_speed = true
+floor_block_on_wall = false
+floor_max_angle = 1.553343
 script = ExtResource("1_eiaiy")
 sprite3dNode = NodePath("Sprite3D")
 animationPlayer = NodePath("AnimationPlayer")
 stateMachine = NodePath("StateMachine")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04331833, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16546494, 0)
 shape = SubResource("CapsuleShape3D_gelu2")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
