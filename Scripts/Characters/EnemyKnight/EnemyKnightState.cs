@@ -1,8 +1,8 @@
-namespace GameDevTutorial25DRPGGameDevTvGodot.Scripts.Characters.Player;
+namespace GameDevTutorial25DRPGGameDevTvGodot.Scripts.Characters.EnemyKnight;
 
 using Godot;
 
-abstract public partial class PlayerState : CharacterState
+abstract public partial class EnemyKnightState : CharacterState
 {
     public override void _Ready()
     {
@@ -10,6 +10,6 @@ abstract public partial class PlayerState : CharacterState
 
         // Über die GetOwner-Methode wird der Player-Node (Root-Node) abgerufen,
         // da dieser das Eltern-Node ist. Über <Player> wird der Typ gecastet.
-        character = GetOwner<Player>();
+        character = GetOwner<EnemyKnight>();
     }
 }

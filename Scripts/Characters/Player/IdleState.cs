@@ -5,7 +5,10 @@ using Godot;
 
 public partial class IdleState : PlayerState
 {
-    protected override string animationName => GameConstants.ANIM_IDLE;
+    protected override void EnterState()
+    {
+       character.animationPlayer.Play(GameConstants.ANIM_IDLE);
+    }
 
     public override void _PhysicsProcess(double delta)
     {
@@ -13,6 +16,11 @@ public partial class IdleState : PlayerState
         {
             // Wechselt in den MoveState
             character.stateMachine.SwitchCurrentState<MoveState>();
+            return;
         }
+
+        // Aufgrund der Gravity muss der Character auch im IdleState bewegt werden.
+        // Ansonsten würde der Character in der Luft schweben bleiben.
+        StartMoveAndSlide(0f);
     }
 }

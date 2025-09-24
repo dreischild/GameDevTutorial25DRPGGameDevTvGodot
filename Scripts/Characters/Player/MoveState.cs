@@ -5,8 +5,12 @@ using Godot;
 
 public partial class MoveState : PlayerState
 {
-    protected override string animationName => GameConstants.ANIM_MOVE;
     private bool isDashingKeyJustPressed = false;
+
+    protected override void EnterState()
+    {
+       character.animationPlayer.Play(GameConstants.ANIM_MOVE);
+    }
 
     public override void _PhysicsProcess(double delta)
     {

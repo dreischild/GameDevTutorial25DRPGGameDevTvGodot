@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://cl856o5ryb335"]
+[gd_scene load_steps=76 format=3 uid="uid://cl856o5ryb335"]
 
 [ext_resource type="Texture2D" uid="uid://b8pvpo5tof8pt" path="res://Assets/Sprites/Characters/Enemy Knight/Idle/0_Demons_of_Darkness_Idle_000.png" id="1_lwt1d"]
 [ext_resource type="Script" uid="uid://ctlt758ejvyax" path="res://Scripts/Characters/EnemyKnight/EnemyKnight.cs" id="1_v78aj"]
@@ -66,6 +66,8 @@
 [ext_resource type="Texture2D" uid="uid://ue1s8ti8kueo" path="res://Assets/Sprites/Characters/Enemy Knight/TakeHit/0_Demons_of_Darkness_Hurt_008.png" id="62_80i88"]
 [ext_resource type="Texture2D" uid="uid://dvj5ffjhjii2j" path="res://Assets/Sprites/Characters/Enemy Knight/TakeHit/0_Demons_of_Darkness_Hurt_009.png" id="63_0awed"]
 [ext_resource type="Texture2D" uid="uid://dnygas8oujp6j" path="res://Assets/Sprites/Characters/Enemy Knight/TakeHit/0_Demons_of_Darkness_Hurt_011.png" id="64_35ggq"]
+[ext_resource type="PackedScene" uid="uid://dyhx0550galw3" path="res://Scenes/Characters/state_machine.tscn" id="67_fdkq4"]
+[ext_resource type="Script" uid="uid://dqt8skbsfxpjp" path="res://Scripts/Characters/EnemyKnight/IdleState.cs" id="68_scprb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fdkq4"]
 radius = 0.5004883
@@ -162,8 +164,11 @@ _data = {
 &"TakeHit": SubResource("Animation_id2hi")
 }
 
-[node name="EnemyKnight" type="CharacterBody3D"]
+[node name="EnemyKnight" type="CharacterBody3D" node_paths=PackedStringArray("sprite3dNode", "animationPlayer", "stateMachine")]
 script = ExtResource("1_v78aj")
+sprite3dNode = NodePath("Sprite3D")
+animationPlayer = NodePath("AnimationPlayer")
+stateMachine = NodePath("StateMachine")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.116662085, 0.096069336, 0)
@@ -177,3 +182,10 @@ texture = ExtResource("1_lwt1d")
 libraries = {
 &"": SubResource("AnimationLibrary_enapy")
 }
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("currentState", "states") instance=ExtResource("67_fdkq4")]
+currentState = NodePath("IdleState")
+states = [NodePath("IdleState")]
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+script = ExtResource("68_scprb")
