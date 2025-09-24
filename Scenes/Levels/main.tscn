@@ -1,9 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwbmyqf6dhl2m"]
+[gd_scene load_steps=8 format=3 uid="uid://cwbmyqf6dhl2m"]
 
 [ext_resource type="Script" uid="uid://d3sjhur7r0r03" path="res://Scripts/Levels/Main.cs" id="1_yjsus"]
 [ext_resource type="PackedScene" uid="uid://bw2ucp7cuc17b" path="res://Scenes/Characters/Player/player.tscn" id="2_u872a"]
 [ext_resource type="PackedScene" uid="uid://cl856o5ryb335" path="res://Scenes/Characters/EnemyKnight/enemy_knight.tscn" id="3_nk5xi"]
 [ext_resource type="MeshLibrary" uid="uid://xijmq5iiko46" path="res://Resources/tiles.tres" id="3_u872a"]
+
+[sub_resource type="Curve3D" id="Curve3D_nk5xi"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.27714157, 1.7565498, -2.7769322, 0, 0, 0, 0, 0, 0, 4.413723, 1.7565594, -3.5915928, 0, 0, 0, 0, 0, 0, 7.664337, 1.7565594, -0.9692488, 0, 0, 0, 0, 0, 0, 7.363861, 1.7565594, 1.6622009, 0, 0, 0, 0, 0, 0, 1.190422, 1.7565594, 1.9080458, 0, 0, 0, 0, 0, 0, -1.8962936, 1.7565594, -0.5230856),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[sub_resource type="Curve3D" id="Curve3D_7i1ub"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.27714157, 1.7565498, -2.7769322, 0, 0, 0, 0, 0, 0, 9.027615, 1.7565594, -2.4406204, 0, 0, 0, 0, 0, 0, 17.409393, 1.7565594, 1.4617329, 0, 0, 0, 0, 0, 0, 14.502487, 1.7565594, 4.497917, 0, 0, 0, 0, 0, 0, 1.190422, 1.7565594, 1.9080458, 0, 0, 0, 0, 0, 0, -1.8962936, 1.7565594, -0.5230856),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nk5xi"]
 size = Vector3(1, 4.003357, 2.94812)
@@ -11,14 +27,48 @@ size = Vector3(1, 4.003357, 2.94812)
 [node name="Main" type="Node3D"]
 script = ExtResource("1_yjsus")
 
+[node name="EnemyKnight" parent="." instance=ExtResource("3_nk5xi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.833534, 1.7487671, -0.21533537)
+
 [node name="Player" parent="." instance=ExtResource("2_u872a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6901, 1.7487671, -0.21533537)
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 2, 8)
 
-[node name="EnemyKnight" parent="." instance=ExtResource("3_nk5xi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.833534, 1.7487671, -0.21533537)
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Path3D" type="Path3D" parent="Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.53888, 1.5509357, 4.985176)
+curve = SubResource("Curve3D_nk5xi")
+
+[node name="Path3D4" type="Path3D" parent="Enemies"]
+transform = Transform3D(0.7993387, 0, -0.60088074, 0, 1, 0, 0.60088074, 0, 0.7993387, 53.73735, 1.5509357, -22.949497)
+curve = SubResource("Curve3D_nk5xi")
+
+[node name="Path3D6" type="Path3D" parent="Enemies"]
+transform = Transform3D(0.7993387, 0, -0.60088074, 0, 1, 0, 0.60088074, 0, 0.7993387, 65.25241, 1.5509357, -22.949497)
+curve = SubResource("Curve3D_nk5xi")
+
+[node name="Path3D7" type="Path3D" parent="Enemies"]
+transform = Transform3D(0.7993387, 0, -0.60088074, 0, 1, 0, 0.60088074, 0, 0.7993387, 65.25241, 1.5509357, -12.138138)
+curve = SubResource("Curve3D_nk5xi")
+
+[node name="Path3D8" type="Path3D" parent="Enemies"]
+transform = Transform3D(0.7993387, 0, -0.60088074, 0, 1, 0, 0.60088074, 0, 0.7993387, 31.09108, 3.5671778, -23.585)
+curve = SubResource("Curve3D_nk5xi")
+
+[node name="Path3D5" type="Path3D" parent="Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.097626, 1.5509357, -9.152754)
+curve = SubResource("Curve3D_nk5xi")
+
+[node name="Path3D2" type="Path3D" parent="Enemies"]
+transform = Transform3D(0.97026616, 0, 0.24204044, 0, 1, 0, -0.24204044, 0, 0.97026616, 15.652363, 1.5509357, 4.985176)
+curve = SubResource("Curve3D_nk5xi")
+
+[node name="Path3D3" type="Path3D" parent="Enemies"]
+transform = Transform3D(0.97026616, 0, 0.24204044, 0, 1, 0, -0.24204044, 0, 0.97026616, 51.732876, 1.5509357, 4.985176)
+curve = SubResource("Curve3D_7i1ub")
 
 [node name="Environment" type="Node3D" parent="."]
 
