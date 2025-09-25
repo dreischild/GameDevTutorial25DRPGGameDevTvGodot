@@ -34,6 +34,10 @@ public partial class PatrolOnPathState : EnemyKnightState
             }
         }
 
+        // Immer, wenn das Ziel erreicht ist, wird der nächste Punkt als Ziel gesetzt.
+        character.navigationAgent3DNode.NavigationFinished += SetNextPathPointAsDestination;
+
+        // Initial den nächsten Pfadpunkt als Ziel setzen.
         SetNextPathPointAsDestination();
     }
 
@@ -41,13 +45,6 @@ public partial class PatrolOnPathState : EnemyKnightState
     {
         Vector3 nextNavigationPosition = character.navigationAgent3DNode.GetNextPathPosition();
         Vector3 directionToNextNavigationPosition = character.GlobalPosition.DirectionTo(nextNavigationPosition);
-
-        if (character.navigationAgent3DNode.IsNavigationFinished())
-        {
-            // Auf den nächsten Pfadpunkt setzen.
-            SetNextPathPointAsDestination();
-            return;
-        }
 
         character.direction = new Vector2(directionToNextNavigationPosition.X, directionToNextNavigationPosition.Z);
         StartMoveAndSlide(5f);
