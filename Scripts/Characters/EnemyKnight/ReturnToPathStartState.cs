@@ -6,7 +6,6 @@ using System;
 
 public partial class ReturnToPathStartState : EnemyKnightState
 {
-    private Vector3 destinationPoint;
 
     protected override void EnterState()
     {
@@ -23,9 +22,6 @@ public partial class ReturnToPathStartState : EnemyKnightState
 
         // Setzt das Ziel des NavigationAgent3D auf den ermittelten Pfadpunkt.
         character.navigationAgent3DNode.TargetPosition = destinationPoint;
-
-
-        GD.Print("destinationPoint" + destinationPoint);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -36,8 +32,8 @@ public partial class ReturnToPathStartState : EnemyKnightState
 
         if (character.navigationAgent3DNode.IsNavigationFinished())
         {
-            // Wechselt in den IdleState
-            character.stateMachine.SwitchCurrentState<IdleState>();
+            // Wechselt in den PatrolOnPathState
+            character.stateMachine.SwitchCurrentState<PatrolOnPathState>();
             return;
         }
 

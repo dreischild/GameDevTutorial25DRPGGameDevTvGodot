@@ -45,7 +45,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.53888, -0.048918247, 4.985
 curve = SubResource("Curve3D_nk5xi")
 
 [node name="EnemyKnight" parent="Enemies/Path3D" node_paths=PackedStringArray("Path3DNode") instance=ExtResource("3_nk5xi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.232754, 1.7976854, -11.580864)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6282387, 1.7976854, -10.27495)
 Path3DNode = NodePath("..")
 
 [node name="Path3D4" type="Path3D" parent="Enemies"]

@@ -4,6 +4,8 @@ using Godot;
 
 abstract public partial class EnemyKnightState : CharacterState
 {
+    protected Vector3 destinationPoint;
+ 
     public override void _Ready()
     {
         base._Ready();
