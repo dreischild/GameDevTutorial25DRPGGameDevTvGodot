@@ -165,11 +165,12 @@ _data = {
 &"TakeHit": SubResource("Animation_id2hi")
 }
 
-[node name="EnemyKnight" type="CharacterBody3D" node_paths=PackedStringArray("sprite3dNode", "animationPlayer", "stateMachine")]
+[node name="EnemyKnight" type="CharacterBody3D" node_paths=PackedStringArray("sprite3dNode", "animationPlayer", "stateMachine", "navigationAgent3DNode")]
 script = ExtResource("1_v78aj")
 sprite3dNode = NodePath("Sprite3D")
 animationPlayer = NodePath("AnimationPlayer")
 stateMachine = NodePath("StateMachine")
+navigationAgent3DNode = NodePath("NavigationAgent3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.116662085, 0.096069336, 0)
@@ -193,3 +194,6 @@ script = ExtResource("68_scprb")
 
 [node name="ReturnToPathStartState" type="Node" parent="StateMachine"]
 script = ExtResource("69_51hg0")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true

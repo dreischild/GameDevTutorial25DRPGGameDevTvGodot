@@ -13,6 +13,7 @@ public partial class Character : CharacterBody3D
 
     [ExportGroup("Enemy Nodes")]
     [Export] public Path3D Path3DNode;
+    [Export] public NavigationAgent3D navigationAgent3DNode;
 
     public Vector2 direction = Vector2.Zero;
     private StringName currentAnimation = GameConstants.ANIM_IDLE;
