@@ -9,10 +9,10 @@ public partial class PatrolOnPathState : EnemyKnightState
     private int pathPointCount = 0;
     private int currentPathIndex = 0;
 
+    [Export] Timer waitAtPathPointTimer;
+
     protected override void EnterState()
     {
-        character.animationPlayer.Play(GameConstants.ANIM_MOVE);
-
         // Anzahl der Punkte auf dem Pfad ermitteln.
         pathPointCount = character.Path3DNode.Curve.GetPointCount();
 
@@ -34,8 +34,11 @@ public partial class PatrolOnPathState : EnemyKnightState
             }
         }
 
-        // Immer, wenn das Ziel erreicht ist, wird der nächste Punkt als Ziel gesetzt.
-        character.navigationAgent3DNode.NavigationFinished += SetNextPathPointAsDestination;
+        // Immer, wenn das Ziel erreicht ist, wird ein Timer für das Verfolgen des nächsten Punktes gestartet.
+        character.navigationAgent3DNode.NavigationFinished += PauseAndSetWaitAtPathPointTimer;
+
+        // Wenn der Timer abläuft, wird der nächste Pfadpunkt als Ziel gesetzt.
+        waitAtPathPointTimer.Timeout += SetNextPathPointAsDestination;
 
         // Initial den nächsten Pfadpunkt als Ziel setzen.
         SetNextPathPointAsDestination();
@@ -47,18 +50,36 @@ public partial class PatrolOnPathState : EnemyKnightState
         Vector3 directionToNextNavigationPosition = character.GlobalPosition.DirectionTo(nextNavigationPosition);
 
         character.direction = new Vector2(directionToNextNavigationPosition.X, directionToNextNavigationPosition.Z);
-        StartMoveAndSlide(5f);
+        StartMoveAndSlide(3f);
+    }
+
+    private void PauseAndSetWaitAtPathPointTimer()
+    {
+        // Animation auf Idle setzen.
+        character.animationPlayer.Play(GameConstants.ANIM_IDLE);
+
+        // Randomisiere die Wartezeit zwischen 0.5 und 2 Sekunden.
+        waitAtPathPointTimer.WaitTime = GD.RandRange(0.5f, 2f);
+
+        // Startet den Timer.
+        waitAtPathPointTimer.Start();
     }
     
     private void SetNextPathPointAsDestination()
     {
+        // Animation auf Move setzen.
+        character.animationPlayer.Play(GameConstants.ANIM_MOVE);
+
         // Erhöht den aktuellen Pfad Index um 1.
         // Wenn der Index das Ende des Pfades überschreitet, wird er auf 0 zurückgesetzt.
-        currentPathIndex++;
-        if (currentPathIndex >= pathPointCount)
-        {
-            currentPathIndex = 0;
-        }
+        currentPathIndex = Mathf.Wrap(currentPathIndex + 1, 0, pathPointCount);
+
+        // Alternativ zu Mathf.Wrap:
+        //. currentPathIndex++;
+        //. if (currentPathIndex >= pathPointCount)
+        //. {
+        //      currentPathIndex = 0;
+        //. }
 
         // Nächsten Pfadpunkt ermitteln.
         Vector3 localPointPosition = character.Path3DNode.Curve.GetPointPosition(currentPathIndex);

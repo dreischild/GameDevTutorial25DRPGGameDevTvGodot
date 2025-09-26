@@ -196,8 +196,12 @@ script = ExtResource("68_scprb")
 [node name="ReturnToPathStartState" type="Node" parent="StateMachine"]
 script = ExtResource("69_51hg0")
 
-[node name="PatrolOnPathState" type="Node" parent="StateMachine"]
+[node name="PatrolOnPathState" type="Node" parent="StateMachine" node_paths=PackedStringArray("waitAtPathPointTimer")]
 script = ExtResource("70_smvbi")
+waitAtPathPointTimer = NodePath("WaitTimer")
+
+[node name="WaitTimer" type="Timer" parent="StateMachine/PatrolOnPathState"]
+one_shot = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 debug_enabled = true
