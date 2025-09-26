@@ -1,5 +1,6 @@
 namespace GameDevTutorial25DRPGGameDevTvGodot.Scripts.Characters.EnemyKnight;
 
+using System;
 using Godot;
 
 public partial class EnemyKnight : Character

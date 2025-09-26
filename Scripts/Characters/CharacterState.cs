@@ -1,5 +1,6 @@
 namespace GameDevTutorial25DRPGGameDevTvGodot.Scripts.Characters;
 
+using System;
 using GameDevTutorial25DRPGGameDevTvGodot.Scripts.General;
 using Godot;
 
@@ -32,6 +33,7 @@ abstract public partial class CharacterState : Node
         else if (what == DEACTIVATE_STATE__NOTIFICATION)
         {
             DeactivateState();
+            LeaveState();
         }
     }
 
@@ -64,6 +66,17 @@ abstract public partial class CharacterState : Node
         // Die Bewegung wird angewendet.
         character.MoveAndSlide();
     }
-    
+
+    protected void GoToNavigationTarget(float speed = 5f, bool applyGravity = true)
+    {
+        Vector3 nextNavigationPosition = character.navigationAgent3DNode.GetNextPathPosition();
+        Vector3 directionToNextNavigationPosition = character.GlobalPosition.DirectionTo(nextNavigationPosition);
+
+        character.direction = new Vector2(directionToNextNavigationPosition.X, directionToNextNavigationPosition.Z);
+        StartMoveAndSlide(speed, applyGravity);
+    }
+
     protected virtual void EnterState() { }
+
+    protected virtual void LeaveState() {  }
 }

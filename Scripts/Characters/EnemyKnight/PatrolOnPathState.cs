@@ -9,6 +9,8 @@ public partial class PatrolOnPathState : EnemyKnightState
     private int pathPointCount = 0;
     private int currentPathIndex = 0;
 
+    private bool playerInChaseArea = false;
+
     [Export] Timer waitAtPathPointTimer;
 
     protected override void EnterState()
@@ -40,17 +42,35 @@ public partial class PatrolOnPathState : EnemyKnightState
         // Wenn der Timer abläuft, wird der nächste Pfadpunkt als Ziel gesetzt.
         waitAtPathPointTimer.Timeout += SetNextPathPointAsDestination;
 
+        // Event für das Betreten des Chase-Bereichs abonnieren.
+        character.chaseArea3DNode.BodyEntered += OnBodyEnteredChaseArea;
+
+        // Event für das Verlassen des Chase-Bereichs abonnieren.
+        character.chaseArea3DNode.BodyExited += OnBodyExitedChaseArea;
+
         // Initial den nächsten Pfadpunkt als Ziel setzen.
         SetNextPathPointAsDestination();
     }
 
+    protected override void LeaveState()
+    {
+        // Events abmelden, um Memory Leaks zu vermeiden.
+        character.navigationAgent3DNode.NavigationFinished -= PauseAndSetWaitAtPathPointTimer;
+        waitAtPathPointTimer.Timeout -= SetNextPathPointAsDestination;
+        character.chaseArea3DNode.BodyEntered -= OnBodyEnteredChaseArea;
+        character.chaseArea3DNode.BodyExited -= OnBodyExitedChaseArea;
+    }
+
     public override void _PhysicsProcess(double delta)
     {
-        Vector3 nextNavigationPosition = character.navigationAgent3DNode.GetNextPathPosition();
-        Vector3 directionToNextNavigationPosition = character.GlobalPosition.DirectionTo(nextNavigationPosition);
+        if (playerInChaseArea && IsPlayerInSight())
+        {
+            // Wechsle in den Chase State
+            character.stateMachine.SwitchCurrentState<ChaseState>();
+            return;
+        }
 
-        character.direction = new Vector2(directionToNextNavigationPosition.X, directionToNextNavigationPosition.Z);
-        StartMoveAndSlide(3f);
+        GoToNavigationTarget(4f);
     }
 
     private void PauseAndSetWaitAtPathPointTimer()
@@ -64,7 +84,7 @@ public partial class PatrolOnPathState : EnemyKnightState
         // Startet den Timer.
         waitAtPathPointTimer.Start();
     }
-    
+
     private void SetNextPathPointAsDestination()
     {
         // Animation auf Move setzen.
@@ -87,5 +107,55 @@ public partial class PatrolOnPathState : EnemyKnightState
 
         // Setzt das Ziel des NavigationAgent3D auf den ermittelten Pfadpunkt.
         character.navigationAgent3DNode.TargetPosition = destinationPoint;
+    }
+
+    private void OnBodyEnteredChaseArea(Node3D body)
+    {
+        // Nur relevant, wenn es sich um den Spieler handelt
+        if (!(body is Player.Player))
+        {
+            return;
+        }
+
+        // Flag setzen, dass der Spieler im Chase-Bereich ist
+        playerInChaseArea = true;
+    }
+
+    private void OnBodyExitedChaseArea(Node3D body)
+    {
+        // Nur relevant, wenn es sich um den Spieler handelt
+        if (!(body is Player.Player))
+        {
+            return;
+        }
+
+        // Flag setzen, dass der Spieler nicht mehr im Chase-Bereich ist
+        playerInChaseArea = false;
+    }
+
+    private bool IsPlayerInSight()
+    {
+        if (character.chaseArea3DNode.GetOverlappingBodies().Count == 0)
+        {
+            return false;
+        }
+
+        // Prüfe, ob ein überlappender Körper der Spieler ist
+        foreach (var body in character.chaseArea3DNode.GetOverlappingBodies())
+        {
+            if (!(body is Player.Player player))
+            {
+                continue;
+            }
+
+            character.targetCharacter = player;
+            // Prüfe, ob der Spieler gesehen werden kann
+            if (character.CanSeeObject(player))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -34,7 +34,7 @@ size = Vector3(1, 4.003357, 2.94812)
 script = ExtResource("1_yjsus")
 
 [node name="Player" parent="." instance=ExtResource("2_u872a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.6036, 1.7487671, 4.4847946)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.28214, 1.7487671, 7.2907705)
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 2, 8)
@@ -46,7 +46,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.53888, -0.048918247, 4.985
 curve = SubResource("Curve3D_nk5xi")
 
 [node name="EnemyKnight" parent="Enemies/Path3D" node_paths=PackedStringArray("Path3DNode") instance=ExtResource("3_nk5xi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.628239, 1.7976854, 1.72505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6444778, 1.7976854, 1.72505)
 Path3DNode = NodePath("..")
 
 [node name="Path3D4" type="Path3D" parent="Enemies"]
