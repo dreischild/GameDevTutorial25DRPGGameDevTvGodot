@@ -37,7 +37,7 @@ script = ExtResource("1_yjsus")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.28214, 1.7487671, 7.2907705)
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 2, 8)
+transform = Transform3D(0.98027116, 0.11729359, -0.15909314, 0, 0.80489373, 0.59341884, 0.19765733, -0.58171135, 0.7890141, 0, 4.02, 6.27)
 
 [node name="Enemies" type="Node" parent="."]
 

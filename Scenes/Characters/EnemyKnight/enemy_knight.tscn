@@ -214,8 +214,13 @@ waitAtPathPointTimer = NodePath("WaitTimer")
 [node name="WaitTimer" type="Timer" parent="StateMachine/PatrolOnPathState"]
 one_shot = true
 
-[node name="ChaseState" type="Node" parent="StateMachine"]
+[node name="ChaseState" type="Node" parent="StateMachine" node_paths=PackedStringArray("recalculationTimer")]
 script = ExtResource("71_y3d2n")
+recalculationTimer = NodePath("RecalculateTimer")
+
+[node name="RecalculateTimer" type="Timer" parent="StateMachine/ChaseState"]
+wait_time = 0.5
+autostart = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 debug_enabled = true
